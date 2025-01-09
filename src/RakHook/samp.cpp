@@ -22,10 +22,12 @@ rakhook::samp_ver rakhook::samp_version() {
         auto          *ntheader = reinterpret_cast<IMAGE_NT_HEADERS *>(base + reinterpret_cast<IMAGE_DOS_HEADER *>(base)->e_lfanew);
         std::uintptr_t ep       = ntheader->OptionalHeader.AddressOfEntryPoint;
         switch (ep) {
-        case 0x31DF13: v = samp_ver::v037r1;  break;
-        case 0xCC4D0:  v = samp_ver::v037r31; break;
-        case 0xCBCB0:  v = samp_ver::v037r4;  break;
-        case 0xFDB60:  v = samp_ver::v03dlr1; break;
+        case 0x31DF13: v = samp_ver::v037r1; break;
+        case 0x3195DD: v = samp_ver::v037r2; break;
+        case 0xCC4D0: v = samp_ver::v037r31; break;
+        case 0xCBCB0: v = samp_ver::v037r4; break;
+        case 0xCBC90: v = samp_ver::v037r5; break;
+        case 0xFDB60: v = samp_ver::v03dlr1; break;
         default: break;
         }
 

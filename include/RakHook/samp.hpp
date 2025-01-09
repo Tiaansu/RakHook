@@ -8,8 +8,10 @@ enum class samp_ver {
     unknown = -1,
 
     v037r1 = 0,
+    v037r2,
     v037r31,
     v037r4,
+    v037r5,
     v03dlr1
 };
 
