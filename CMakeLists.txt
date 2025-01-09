@@ -4,12 +4,25 @@ project(RakHook
     LANGUAGES CXX C
 )
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+
+if (MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd5054")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4100")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4996")
+endif ()
+
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     set(RAKHOOK_MASTER_PROJECT ON)
 endif ()
 
 option(RAKHOOK_INSTALL "Install targets" ${RAKHOOK_MASTER_PROJECT})
 option(RAKHOOK_EXAMPLE "Build an example" ${RAKHOOK_MASTER_PROJECT})
+
+set(POLYHOOK_BUILD_STATIC_RUNTIME OFF CACHE BOOL "")
+add_subdirectory(deps/polyhook)
 
 add_subdirectory(src)
 
@@ -59,6 +72,6 @@ if (RAKHOOK_INSTALL)
     )
 endif ()
 
-if (RAKHOOK_EXAMPLE)
-    add_subdirectory(example)
-endif ()
+# if (RAKHOOK_EXAMPLE)
+#     add_subdirectory(example)
+# endif ()
